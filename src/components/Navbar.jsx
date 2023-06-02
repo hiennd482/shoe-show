@@ -3,13 +3,17 @@ import {
   HeartIcon,
   MagnifyingGlassIcon,
   ShoppingBagIcon,
+  SunIcon,
+  MoonIcon,
 } from "@heroicons/react/24/outline";
 import logo from "../assets/logo.png";
 import { set } from "lodash";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectTotalQTY, setOpenCart } from "../app/CartSlice";
+import useDarkmode from "./darkMode/useDarkmode";
 const Navbar = () => {
+  const [isDarkMode, toggleDarkMode] = useDarkmode();
   const dispatch = useDispatch();
   const totalQTY = useSelector(selectTotalQTY);
   const onCarttoggle = () => {
@@ -88,6 +92,33 @@ const Navbar = () => {
                 </div>
               </button>
             </li>
+            {isDarkMode ? (
+              <li className="flex items-center">
+                <button
+                  onClick={() => toggleDarkMode(!isDarkMode)}
+                  className="border-none outline-none active:scale-110 transition-all duration-300 relative"
+                >
+                  <SunIcon
+                    className={`icon-style ${
+                      navState && "text-slate-900 transition-all duration-300"
+                    }`}
+                  />
+                </button>
+              </li>
+            ) : (
+              <li className="flex items-center">
+                <button
+                  onClick={() => toggleDarkMode(!isDarkMode)}
+                  className="border-none outline-none active:scale-110 transition-all duration-300 relative"
+                >
+                  <MoonIcon
+                    className={`icon-style ${
+                      navState && "text-slate-900 transition-all duration-300"
+                    }`}
+                  />
+                </button>
+              </li>
+            )}
           </ul>
         </nav>
       </header>
