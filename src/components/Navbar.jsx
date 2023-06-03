@@ -13,7 +13,10 @@ import { set } from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import { selectTotalQTY, setOpenCart } from "../app/CartSlice";
 import useDarkmode from "./darkMode/useDarkmode";
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
+  const navigate = useNavigate();
+
   const [isDarkMode, toggleDarkMode] = useDarkmode();
   const dispatch = useDispatch();
   const totalQTY = useSelector(selectTotalQTY);
@@ -123,6 +126,7 @@ const Navbar = () => {
 
             <li className="flex items-center">
               <UserIcon
+                onClick={() => navigate("/login")}
                 className={`icon-style ${
                   navState && "text-slate-900 transition-all duration-300"
                 }`}
