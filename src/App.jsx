@@ -19,10 +19,10 @@ import {
 } from "./data/data.js";
 function App() {
   return (
-    <>
+    <div className="">
       <Navbar></Navbar>
       <Cart></Cart>
-      <main className="flex flex-col gap-16 relative">
+      <main className="flex flex-col gap-16 relative dark:bg-black/80  duration-300 dark:border-t dark:border-white/80">
         <Header heroapi={heroapi}></Header>
         <Sale endpoint={popularsales} ifExists></Sale>
         <FlexContent endpoint={highlight} ifExists></FlexContent>
@@ -32,7 +32,7 @@ function App() {
         <Stories story={story}></Stories>
       </main>
       <Footer footerAPI={footerAPI}></Footer>
-    </>
+    </div>
   );
 }
 

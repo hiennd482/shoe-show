@@ -162,7 +162,7 @@ const toprateslaes = {
       btn: "Buy Now",
       img: product5,
       price: "150",
-      color: "from-gray-900 to-yellow-500",
+      color: "from-yellow-500 to-gray-700",
       shadow: "shadow-lg shadow-yellow-500",
     },
     {
@@ -228,8 +228,8 @@ const toprateslaes = {
       btn: "Buy Now",
       img: product11,
       price: "150",
-      color: "from-slate-900 to-black",
-      shadow: "shadow-lg shadow-black",
+      color: "from-slate-400 to-black/10",
+      shadow: "shadow-lg shadow-slate-400",
     },
     {
       id: "0M0x12",

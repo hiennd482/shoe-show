@@ -42,11 +42,15 @@ const Stories = ({ story: { title, news } }) => {
                   <div className="flex items-center justify-between w-full px-4">
                     <div className="flex items-center gap-0.5">
                       <HeartIcon className="icon-style text-red-500 w-5 h-5" />
-                      <span className="text-xs font-bold">{val.like}</span>
+                      <span className="text-xs font-bold dark:text-white">
+                        {val.like}
+                      </span>
                     </div>
                     <div className="flex items-center gap-0.5">
-                      <ClockIcon className="icon-style w-4 h-4 text-black" />
-                      <span className="text-xs font-bold">{val.time}</span>
+                      <ClockIcon className="icon-style w-4 h-4 text-black dark:text-white" />
+                      <span className="text-xs font-bold dark:text-white">
+                        {val.time}
+                      </span>
                     </div>
                     <div className="flex items-center gap-0.5">
                       <HashtagIcon className="icon-style text-blue-600" />
@@ -56,10 +60,10 @@ const Stories = ({ story: { title, news } }) => {
                     </div>
                   </div>
                   <div className="grid items-center justify-items-start px-4">
-                    <h1 className="text-base font-semibold lg:text-sm">
+                    <h1 className="text-base font-semibold lg:text-sm dark:text-white">
                       {val.title}
                     </h1>
-                    <p className="text-sm text-justify lg:text-xs">
+                    <p className="text-sm text-justify lg:text-xs dark:text-white">
                       {truncate(val.text, { length: 175 })}
                     </p>
                   </div>
@@ -68,7 +72,7 @@ const Stories = ({ story: { title, news } }) => {
                       href={val.url}
                       target="_blank"
                       role={"button"}
-                      className="w-full bg-gradient-to-b from-slate-900 to-black shadow-md shadow-black text-center text-slate-100 py-1.5 button-theme"
+                      className="w-full bg-gradient-to-b from-slate-900 to-black shadow-md dark:from-slate-100 dark:to-white shadow-black dark:shadow-white text-center text-slate-100 dark:text-black py-1.5 button-theme"
                     >
                       {val.btn}
                     </a>

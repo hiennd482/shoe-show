@@ -18,12 +18,14 @@ const FlexContent = ({
             {heading}
           </h1>
           <h1
-            className="text-5xl lg:text-4xl md:text-3xl sm:text-2xl font-bold text-slate-900 filter
+            className="text-5xl lg:text-4xl md:text-3xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100 filter
           drop-shadow-lg"
           >
             {title}
           </h1>
-          <p className="xl:text-sm my-4 text-slate-900">{text}</p>
+          <p className="xl:text-sm my-4 text-slate-900 dark:text-slate-100">
+            {text}
+          </p>
           <a
             href={url}
             className="flex items-center"
@@ -32,7 +34,7 @@ const FlexContent = ({
           >
             <button
               type="button"
-              className="button-theme bg-slate-900 shadow-slate-900 text-slate-100 py-1.5"
+              className="button-theme bg-slate-900 shadow-slate-900 text-slate-100 py-1.5 dark:bg-slate-100 dark:text-slate-900 dark:shadow-slate-100 "
             >
               {btn}
             </button>
