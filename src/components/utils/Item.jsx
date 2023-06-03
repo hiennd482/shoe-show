@@ -47,7 +47,7 @@ const Item = ({
         <div className="flex items-center justify-between w-28 my-2">
           <div className="flex items-center bg-white/80  dark:bg-black/80 px-1 rounded blur-effect-theme ">
             <h1 className="text-black dark:text-white text-sm font-medium ">
-              {price}
+              ${price}
             </h1>
           </div>
           <div className="flex items-center gap-1">
