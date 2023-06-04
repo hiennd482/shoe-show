@@ -244,7 +244,11 @@ const Login = () => {
           </form>
           <p className="text-center text-black/40 dark:text-white/40">
             Not a Member yet ?
-            <a href="/register" className="text-[#9cadfc]">
+            <a
+              href=""
+              onClick={() => navigate("/register")}
+              className="text-[#9cadfc]"
+            >
               Join Us
             </a>
           </p>
