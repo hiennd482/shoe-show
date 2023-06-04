@@ -6,22 +6,27 @@ import apple from "../assets/apple.svg";
 import logonike from "../assets/logonike.png";
 import { footerAPI } from "../data/data.js";
 import { HeartIcon, HomeIcon } from "@heroicons/react/24/outline";
-
+import axios from "axios";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // const password = document.querySelector('input[type="password"]');
-    // password.addEventListener("focus", (event) => {
-    //   document.querySelector(".alert").classList.add("hidden");
-    // });
-    // password.addEventListener("blur", (event) => {
-    //   document.querySelector(".alert").classList.remove("hidden");
-    // });
-  });
+  // const getAlldata = async (req, res) => {
+  //   const respone = await axios.get("http://localhost:7070/getall");
+  //   console.log("data ne", respone.data);
+  // };
+  // useEffect(() => {
+  //   // const password = document.querySelector('input[type="password"]');
+  //   // password.addEventListener("focus", (event) => {
+  //   //   document.querySelector(".alert").classList.add("hidden");
+  //   // });
+  //   // password.addEventListener("blur", (event) => {
+  //   //   document.querySelector(".alert").classList.remove("hidden");
+  //   // });
+  //   getAlldata();
+  // }, []);
 
   const handleSumbit = (e) => {
     e.preventDefault();
