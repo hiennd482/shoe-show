@@ -269,7 +269,10 @@ const Login = () => {
           </form>
           <p className="text-center text-black/40 dark:text-white/40">
             Already hava an Account?
-            <span onClick={() => navigate("/login")} className="text-[#9cadfc]">
+            <span
+              onClick={() => navigate("/login")}
+              className="text-[#9cadfc] cursor-pointer"
+            >
               Sign in
             </span>
           </p>

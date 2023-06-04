@@ -246,7 +246,7 @@ const Login = () => {
             Not a Member yet ?
             <span
               onClick={() => navigate("/register")}
-              className="text-[#9cadfc]"
+              className="text-[#9cadfc] cursor-pointer"
             >
               Join Us
             </span>

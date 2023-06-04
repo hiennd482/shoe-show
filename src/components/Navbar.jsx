@@ -126,7 +126,7 @@ const Navbar = () => {
 
             <li className="flex items-center">
               <UserIcon
-                onClick={() => navigate("/register")}
+                onClick={() => navigate("/login")}
                 className={`icon-style ${
                   navState && "text-slate-900 transition-all duration-300"
                 }`}
