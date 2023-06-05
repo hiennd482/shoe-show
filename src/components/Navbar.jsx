@@ -9,13 +9,16 @@ import {
 } from "@heroicons/react/24/outline";
 import logo from "../assets/logo.png";
 import { set } from "lodash";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectTotalQTY, setOpenCart } from "../app/CartSlice";
 import useDarkmode from "./darkMode/useDarkmode";
-import { useNavigate } from "react-router-dom";
+
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [name, setName] = useState();
 
   const [isDarkMode, toggleDarkMode] = useDarkmode();
   const dispatch = useDispatch();
@@ -37,6 +40,7 @@ const Navbar = () => {
     }
   };
   useEffect(() => {
+    // setName(location.state.id);
     window.addEventListener("scroll", onNavSroll);
 
     return () => {
@@ -68,6 +72,7 @@ const Navbar = () => {
                 }`}
               />
             </li>
+
             {isDarkMode ? (
               <li className="flex items-center">
                 <button
@@ -131,6 +136,9 @@ const Navbar = () => {
                   navState && "text-slate-900 transition-all duration-300"
                 }`}
               />
+              {/* {id.length > 0 ? ( */}
+
+              {/* {name ? <p className="icon-style">{name}</p> : ""} */}
             </li>
           </ul>
         </nav>

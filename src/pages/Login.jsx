@@ -7,6 +7,7 @@ import logonike from "../assets/logonike.png";
 import { footerAPI } from "../data/data.js";
 import { HeartIcon, HomeIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
+import toast from "react-hot-toast";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,8 +29,16 @@ const Login = () => {
   //   getAlldata();
   // }, []);
 
+  // const handleSubit2 = (e)=>{
+  //   e.preventDefault();
+  //   const data ={email,password};
+  //   if(email.length !== 0 && password.length !== 0){
+
+  //   }
+  // }
   const handleSumbit = (e) => {
     e.preventDefault();
+    const datatoCheck = { email, password };
     if (email.length == 0 && password.length == 0) {
       setErr(true);
       const input = document.getElementById("floating-input1");
@@ -42,14 +51,42 @@ const Login = () => {
       setErr(true);
       const input = document.getElementById("floating-input2");
       input.focus();
-    } else if (password !== "123") {
-      setErr(true);
-      const input = document.getElementById("floating-input2");
-      input.focus();
+    } else if (email.length !== "" && password.length !== "") {
+      // setErr(true);
+      axios
+        .post("https://shoe-show-be.onrender.com/login", datatoCheck)
+        .then((res) => {
+          toast.success("đăng nhập thành công");
+          // const arr = [];
+          // arr.push(res.data.Array);
+          const username = res.data.data[0].username;
+          // const username = JSON.stringify(arr.map((i) => i.username));
+          // console.log(arr);
+          setTimeout(() => {
+            navigate("/", { state: { id: username } });
+          }, 1000);
+        })
+        .catch((err) => {
+          setErr(true);
+          toast.error("dăng nhập lỗi");
+        });
+      // input.focus();
     } else {
-      navigate("/home", { state: { idc: email } });
+      // if (email !== "" && password !== "") {
+      //   axios.post(
+      //     "http://localhost:7070/login",
+      //     datatoCheck
+      //       .then(() => {
+      //         toast.success("login success");
+      //         setTimeout(() => {
+      //           navigate("/");
+      //         }, 1000);
+      //       })
+      //       .catch((err) => console.log(err))
+      //   );
+      // }
+      console.log("case cuoi cung", email, password);
     }
-    console.log(email, password);
   };
   return (
     <div
@@ -77,7 +114,7 @@ const Login = () => {
       <div className="  flex flex-wrap items-center justify-center p-4 sm:px-12 gap-4">
         <div className="flex-1 text-center"></div>
         <div className="mr-2 absolute top-4 right-4"></div>
-        <div className="max-w-[485px] flex-none w-full bg-white dark:bg-black p-4 sm:p-12  rounded-2xl ">
+        <div className="dark:border dark:border-white/90 max-w-[485px] flex-none w-full bg-white dark:bg-black p-4 sm:p-12  rounded-2xl ">
           <div className="flex items-center justify-center">
             <img src={logonike} className="w-9 py-2" alt="" />
           </div>
@@ -90,21 +127,25 @@ const Login = () => {
           <div className="flex flex-wrap items-center gap-4 mb-7">
             <a
               href=""
-              className="flex flex-1 items-center gap-1 py-1 pl-2 pr-3 border border-black/10 hover:border-black rounded-lg transition-all duration-300"
+              className=" dark:hover:border-white dark:border dark:border-white/20 flex flex-1 items-center gap-1 py-1 pl-2 pr-3 border border-black/10 hover:border-black rounded-lg transition-all duration-300"
             >
-              <div className="w-8 h-8 flex-none bg-white p-2">
+              <div className="w-8 h-8 flex-none bg-white p-2 dark:bg-black ">
                 <img src={gg} alt="" />
               </div>
-              <p className="whitespace-nowrap">Sign in with Google</p>
+              <p className="whitespace-nowrap dark:text-white">
+                Sign in with Google
+              </p>
             </a>
             <a
               href=""
-              className="flex flex-1 items-center gap-1 py-1 pl-2 pr-3 border border-black/10 hover:border-black rounded-lg transition-all duration-300"
+              className=" dark:hover:border-white dark:border dark:border-white/20 flex flex-1 items-center gap-1 py-1 pl-2 pr-3 border border-black/10 hover:border-black rounded-lg transition-all duration-300"
             >
-              <div className="w-8 h-8 flex-none bg-white p-2">
+              <div className="w-8 h-8 flex-none bg-white p-2 dark:rounded-full">
                 <img src={apple} alt="" className="" />
               </div>
-              <p className="whitespace-nowrap">Sign in with Apple</p>
+              <p className="whitespace-nowrap dark:text-white">
+                Sign in with Apple
+              </p>
             </a>
           </div>
           <div className="flex items-center mb-7 ">
@@ -116,6 +157,29 @@ const Login = () => {
           </div>
           <form action="" className="mb-4">
             {/* input */}
+            {err && email.length <= 0 ? (
+              <div className="flex text-[red] gap-2 alert py-2">
+                <div>
+                  <svg
+                    aria-hidden="true"
+                    // className="stroke-red-500"
+                    fill="currentColor"
+                    focusable="false"
+                    width="16px"
+                    height="16px"
+                    viewBox="0 0 24 24"
+                    xmlns="https://www.w3.org/2000/svg"
+                  >
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p className=" text-xs  ">Enter a email</p>
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
             <div className="mb-4 relative ">
               <input
                 type="text"
@@ -139,7 +203,8 @@ const Login = () => {
               </label>
             </div>
 
-            {err && email.length <= 0 ? (
+            {/* alert null password*/}
+            {err && password.length <= 0 ? (
               <div className="flex text-[red] gap-2 alert py-2">
                 <div>
                   <svg
@@ -156,7 +221,7 @@ const Login = () => {
                   </svg>
                 </div>
                 <div>
-                  <p className=" text-xs  ">Enter a email</p>
+                  <p className=" text-xs  ">Enter a password</p>
                 </div>
               </div>
             ) : (
@@ -186,8 +251,8 @@ const Login = () => {
               </label>
             </div>
 
-            {/* alert null password*/}
-            {err && password.length <= 0 ? (
+            {/* alert wrong username or password*/}
+            {err && email.length !== 0 && password.length !== 0 ? (
               <div className="flex text-[red] gap-2 alert">
                 <div>
                   <svg
@@ -204,32 +269,12 @@ const Login = () => {
                   </svg>
                 </div>
                 <div>
-                  <p className=" text-xs  ">Enter a password</p>
+                  <p className=" text-xs  ">wrong password or email</p>
                 </div>
               </div>
             ) : (
-              // <div className="flex text-[red] gap-2 alert">
-              //   <div>
-              //     <svg
-              //       aria-hidden="true"
-              //       // className="stroke-red-500"
-              //       fill="currentColor"
-              //       focusable="false"
-              //       width="16px"
-              //       height="16px"
-              //       viewBox="0 0 24 24"
-              //       xmlns="https://www.w3.org/2000/svg"
-              //     >
-              //       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
-              //     </svg>
-              //   </div>
-              //   <div>
-              //     <p className=" text-xs  ">wrong password</p>
-              //   </div>
-              // </div>
               ""
             )}
-
             <div className="mb-7 text-right">
               <a href="" className="text-[#9cadfc]">
                 Forgot Password?
@@ -237,7 +282,7 @@ const Login = () => {
             </div>
             <button
               onClick={handleSumbit}
-              className="py-2 px-4 bg-black w-full text-white rounded-lg text-lg font-semibold border-black hover:bg-transparent hover:text-black border transition-all duration-300"
+              className="py-2 px-4 bg-black dark:bg-purple-200 dark:text-black dark:hover:bg-black dark:hover:border-white dark:hover:text-white w-full text-white rounded-lg text-lg font-semibold border-black hover:bg-transparent hover:text-black border transition-all duration-300"
             >
               Sign in
             </button>
